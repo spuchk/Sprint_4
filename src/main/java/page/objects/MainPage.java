@@ -1,4 +1,4 @@
-package pageObjects;
+package page.objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,21 +13,6 @@ import static org.junit.Assert.assertEquals;
 
 // Элементы главной страницы сайта
 public class MainPage {
-    public MainPage(WebDriver driver) {
-        MainPage.driver = driver;
-    }
-
-    private static WebDriver driver;
-
-    //Локатор кнопки "да все привыкли"
-    private final By cookieButton = By.id("rcc-confirm-button");
-
-    //Локатор Кнопки заказа в заголовке сайта
-    private  final By headerOrderButton = By.className("Button_Button__ra12g");
-
-    //Локатор кнопки заказа в середине сайта
-    private final By middleOrderButton = By.className("Button_Middle__1CSJM");
-
     // Массив локаторов кнопок с вопросами
     private static final String[] dropDownQuestionsArray = new String[]{
             "accordion__heading-0",
@@ -38,7 +23,6 @@ public class MainPage {
             "accordion__heading-5",
             "accordion__heading-6",
             "accordion__heading-7"};
-
     // Массив локаторов панелей с текстом ответов
     private static final String[] dropDownAnswersArray = new String[]{
             "accordion__panel-0",
@@ -49,12 +33,38 @@ public class MainPage {
             "accordion__panel-5",
             "accordion__panel-6",
             "accordion__panel-7"};
+    private static WebDriver driver;
+    //Локатор кнопки "да все привыкли"
+    private final By cookieButton = By.id("rcc-confirm-button");
+    //Локатор Кнопки заказа в заголовке сайта
+    private final By headerOrderButton = By.className("Button_Button__ra12g");
+    //Локатор кнопки заказа в середине сайта
+    private final By middleOrderButton = By.className("Button_Middle__1CSJM");
+
+    public MainPage(WebDriver driver) {
+        MainPage.driver = driver;
+    }
 
     // Методы для работы с элементами главной страницы
 
+    // Клик по стрелке выпадающего списка
+    public static void clickQuestionArrow(int questionNumber) {
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(By.id(dropDownQuestionsArray[questionNumber])));
+        driver.findElement(By.id(dropDownQuestionsArray[questionNumber])).click();
+    }
+
+    // Проверка текста в открытой панели
+    public static void checkTextInOpenPanel(String expectedText, int answerNumber) {
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id(dropDownAnswersArray[answerNumber])));
+        String answerText = driver.findElement(By.id(dropDownAnswersArray[answerNumber])).getText();
+        assertEquals(expectedText, answerText);
+    }
+
     // Открыть сайт
     public final MainPage openSite() {
-        driver.get("https://https://https://qa-scooter.praktikum-services.ru");
+        driver.get("https://qa-scooter.praktikum-services.ru/");
         return this;
     }
 
@@ -82,21 +92,6 @@ public class MainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", lastQuestionArrow);
 
         return this;
-    }
-
-    // Клик по стрелке выпадающего списка
-    public static void clickQuestionArrow(int questionNumber) {
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.elementToBeClickable(By.id(dropDownQuestionsArray[questionNumber])));
-        driver.findElement(By.id(dropDownQuestionsArray[questionNumber])).click();
-    }
-
-    // Проверка текста в открытой панели
-    public static void checkTextInOpenPanel(String expectedText, int answerNumber) {
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id(dropDownAnswersArray[answerNumber])));
-        String answerText = driver.findElement(By.id(dropDownAnswersArray[answerNumber])).getText();
-        assertEquals(expectedText, answerText);
     }
 
     // Клик по кнопке вопроса

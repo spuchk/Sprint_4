@@ -1,7 +1,7 @@
 import org.junit.Test;
-import pageObjects.MainPage;
+import page.objects.MainPage;
 
-public class DropDownListTest extends CommonTest {
+public class DropDownListTest extends BaseTest {
 
     /* Массив с текстом ожидаемых ответов */
     private final String[] expectedAnswersList = new String[]{

@@ -2,13 +2,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
-import pageObjects.MainPage;
+import page.objects.MainPage;
 
 import static org.junit.Assert.assertEquals;
 
 // Параметризованный тест соответствия текста в выпадающем списке ожидаемому тексту
 @RunWith(Parameterized.class)
-public class DropDownListParamTest extends CommonTest {
+public class DropDownListParamTest extends BaseTest {
 
     private final String questionLocator;
     private final String answerLocator;
@@ -45,8 +45,8 @@ public class DropDownListParamTest extends CommonTest {
                 .clickQuestionButton(questionLocator);
 
         new MainPage(driver);
-        String ActualAnswerText = driver.findElement(By.id(answerLocator)).getText();
-        assertEquals("Текст в ответе не соответствует ожидаемому тексту.", answerText, ActualAnswerText);
+        String actualAnswerText = driver.findElement(By.id(answerLocator)).getText();
+        assertEquals("Текст в ответе не соответствует ожидаемому тексту.", answerText, actualAnswerText);
     }
 }
 

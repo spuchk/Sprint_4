@@ -1,11 +1,11 @@
-package pageObjects;
+package page.objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class RentPage {
-    WebDriver driver;
+    private final WebDriver driver;
 
     //<b>Локаторы данных страницы "Про аренду"
 
@@ -26,14 +26,15 @@ public class RentPage {
     private final By orderButtonYes = By.xpath(".//*[@id='root']/div/div[2]/div[5]/div[2]/button[2]");
     // Локатор модального окна
     private final By modalOrderWindow = By.xpath(".//div[contains(@class, 'Order_ModalHeader')]");
-    //Модальное окно "Заказ Оформлен"
-    public boolean isModalOrderWindowDisplayed() {
-        return driver.findElement(modalOrderWindow).isDisplayed();
-    }
 
     // Конструктор класса
     public RentPage(WebDriver driver) {
         this.driver = driver;
+    }
+
+    //Модальное окно "Заказ Оформлен"
+    public boolean isModalOrderWindowDisplayed() {
+        return driver.findElement(modalOrderWindow).isDisplayed();
     }
 
     //Методы для работы с элементами страницы аренды

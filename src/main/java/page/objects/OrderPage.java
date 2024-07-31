@@ -1,4 +1,4 @@
-package pageObjects;
+package page.objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,10 +13,10 @@ public class OrderPage {
     private final By clientFirstName = By.xpath(".//input[@placeholder='* Имя']");
 
     // Локатор поля "Фамилия"
-    private  final By clientLastName = By.xpath(".//input[@placeholder='* Фамилия']");
+    private final By clientLastName = By.xpath(".//input[@placeholder='* Фамилия']");
 
     // Локатор поля "Адрес: куда привезти заказ"
-    private final  By deliveryAddress = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
+    private final By deliveryAddress = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
 
     //Локатор поля "Станция метро"
     private final By deliveryMetroStation = By.xpath(".//input[@placeholder='* Станция метро']");
@@ -38,6 +38,7 @@ public class OrderPage {
         driver.findElement(clientFirstName).sendKeys(firstName);
         return this;
     }
+
     // Ввод фамилии клиента
     public OrderPage sendClientLastName(String lastName) {
         driver.findElement(clientLastName).sendKeys(lastName);
@@ -54,7 +55,7 @@ public class OrderPage {
     public OrderPage selectMetroStation(String metroStationFromOrder) {
         driver.findElement(deliveryMetroStation).click();
         driver.findElement(deliveryMetroStation).sendKeys(metroStationFromOrder);
-        driver.findElement(deliveryMetroStation).sendKeys(Keys.DOWN,Keys.ENTER);
+        driver.findElement(deliveryMetroStation).sendKeys(Keys.DOWN, Keys.ENTER);
         return this;
     }
 

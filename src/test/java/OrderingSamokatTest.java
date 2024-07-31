@@ -1,11 +1,11 @@
 import org.junit.Test;
-import pageObjects.MainPage;
-import pageObjects.OrderPage;
-import pageObjects.RentPage;
+import page.objects.MainPage;
+import page.objects.OrderPage;
+import page.objects.RentPage;
 
 import static org.junit.Assert.assertTrue;
 
-public class OrderingSamokatTest extends CommonTest {
+public class OrderingSamokatTest extends BaseTest {
 
     // Тест заказа через кнопку в заголовке
     @Test
